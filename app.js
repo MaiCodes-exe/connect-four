@@ -9,7 +9,7 @@ var board;
 var currColumns;
 
 var rows = 6;
-var colums = 7;
+var columns = 7;
 
 
 window.onload = function(){
@@ -21,7 +21,7 @@ function setGame(){
     currColumns = [5, 5, 5, 5, 5, 5, 5];
     for(let r = 0; r < rows; r++){
         let row = [];
-        for(let c = 0; c <colums; c++){
+        for(let c = 0; c <columns; c++){
             row.push('');
 
             let tile = document.createElement('div')
@@ -70,37 +70,38 @@ function setPiece(){
 
 function checkWinner(){
     // checking winner horizontally
-    for (let r = 0; r < rows; r++){
-        for(let c = 0; c < colums - 3; c++){
-            if (board[r][c] != ' '){
-                if (board[r][c] == board[r] [c+1] && board[r] [c+1] && board[r] [c+2] && board[r] [c+2] == board[r] [c+3]){
-                    setWinner(r,c);
-                    return
-                }
-            }
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 3; c++){
+           if (board[r][c] != ' ') {
+               if (board[r][c] == board[r][c+1] && board[r][c+1] == board[r][c+2] && board[r][c+2] == board[r][c+3]) {
+                   setWinner(r, c);
+                   return;
+               }
+           }
         }
-    }
-        // checking winner vertically
+   }
 
-    for(let c = 0; c < colums; c++ ){
-        for(let r = 0; r < rows - 3; r++ ){
-            if(board[r][c] != ' '){
-                if(board[r][c] == board[r+1][c] && board[r+1][c] == board[r+2][c] && board[r+2][c] == board[r+3][c]){
-                    setWinner(r,c);
-                    return;
-                }
-            }
-        }
-    }
+   // checking winner vertically
+
+   for (let c = 0; c < columns; c++) {
+       for (let r = 0; r < rows - 3; r++) {
+           if (board[r][c] != ' ') {
+               if (board[r][c] == board[r+1][c] && board[r+1][c] == board[r+2][c] && board[r+2][c] == board[r+3][c]) {
+                   setWinner(r, c);
+                   return;
+               }
+           }
+       }
+   }
+
 }
 
-function setWinner(r,c){
+function setWinner(r, c) {
     let winner = document.getElementById("winner");
-    if (board[r][c] == playerRed){
-        winner.innerHTML= "Red Wins"
+    if (board[r][c] == playerRed) {
+        winner.innerText = "Red Wins";             
+    } else {
+        winner.innerText = "Yellow Wins";
     }
-    else{
-        winner.innerHTML= "Yellow Wins"
-    }
-    gameOver = true
+    gameOver = true;
 }
