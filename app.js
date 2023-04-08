@@ -1,7 +1,7 @@
 
 
 var playerRed = "R";
-var playerRed = "Y";
+var playerYellow = "Y";
 var currPlayer = playerRed;
 
 var gameOver = false;
@@ -37,4 +37,19 @@ function setPiece(){
     if (gameOver){
         return
     }
+    let coords = this.id.split("-");
+    let r = parseInt(coords[0]);
+    let c = parseInt(coords[1]);
+    board[r][c] = currPlayer;
+    let tile = this;
+    if (currPlayer == playerRed){
+        tile.classList.add("red-piece");
+        currPlayer = playerYellow
+    }
+    else{
+        tile.classList.add("yellow-piece");
+        currPlayer = playerRed
+
+    }
+
 }
